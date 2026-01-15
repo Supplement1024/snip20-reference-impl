@@ -1,11 +1,16 @@
 # Build results
 /target
-contract.wasm
-contract.wasm.gz
+/contract.wasm
+/contract.wasm.gz
+/tests/example-receiver/contract.wasm
+/tests/example-receiver/contract.wasm.gz
+
+/tests/example-receiver/optimized-wasm/*.wasm.gz
+/optimized-wasm/*.wasm.gz
 
 # Binaries
-*.wasm
-*.wasm.gz
+# *.wasm
+# *.wasm.gz
 
 # Cargo+Git helper file (https://github.com/rust-lang/cargo/blob/0.44.1/src/cargo/sources/git/utils.rs#L320-L327)
 .cargo-ok
