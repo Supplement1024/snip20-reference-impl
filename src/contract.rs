@@ -2066,6 +2066,7 @@ fn is_valid_symbol(symbol: &str) -> bool {
 #[cfg(test)]
 mod tests {
     use std::any::Any;
+    use std::time::Instant;
 
     use cosmwasm_std::testing::*;
     use cosmwasm_std::{
@@ -2232,10 +2233,13 @@ mod tests {
 
     #[test]
     fn test_init_sanity() {
+        let start = Instant::now();
         let (init_result, mut deps) = init_helper(vec![InitialBalance {
             address: "lebron".to_string(),
             amount: Uint128::new(5000),
         }]);
+        let duration = start.elapsed();
+        println!("[unit-test] test_init_sanity elapsed: {:?}", duration);
         assert_eq!(init_result.unwrap(), Response::default());
 
         let constants = CONFIG.load(&deps.storage).unwrap();
@@ -2333,6 +2337,7 @@ mod tests {
 
     #[test]
     fn test_execute_transfer() {
+        let start = Instant::now();
         let (init_result, mut deps) = init_helper(vec![InitialBalance {
             address: "bob".to_string(),
             amount: Uint128::new(5000),
@@ -2356,6 +2361,8 @@ mod tests {
         let handle_result = execute(deps.as_mut(), mock_env(), info, handle_msg);
 
         let result = handle_result.unwrap();
+        let duration = start.elapsed();
+        println!("[unit-test] test_execute_transfer elapsed: {:?}", duration);
         assert!(ensure_success(result));
         let bob_addr = Addr::unchecked("bob".to_string());
         let alice_addr = Addr::unchecked("alice".to_string());
@@ -2438,6 +2445,7 @@ mod tests {
 
     #[test]
     fn test_handle_send() {
+        let start = Instant::now();
         let (init_result, mut deps) = init_helper(vec![InitialBalance {
             address: "bob".to_string(),
             amount: Uint128::new(5000),
@@ -2457,6 +2465,8 @@ mod tests {
         let handle_result = execute(deps.as_mut(), mock_env(), info, handle_msg);
 
         let result = handle_result.unwrap();
+        let duration = start.elapsed();
+        println!("[unit-test] test_handle_send elapsed: {:?}", duration);
         assert!(ensure_success(result));
 
         let handle_msg = ExecuteMsg::Send {
@@ -2965,6 +2975,7 @@ mod tests {
 
     #[test]
     fn test_handle_send_from() {
+        let start = Instant::now();
         let (init_result, mut deps) = init_helper(vec![InitialBalance {
             address: "bob".to_string(),
             amount: Uint128::new(5000),
@@ -3036,6 +3047,8 @@ mod tests {
         let info = mock_info("contract", &[]);
 
         let handle_result = execute(deps.as_mut(), mock_env(), info, handle_msg);
+        let duration = start.elapsed();
+        println!("[unit-test] test_handle_send elapsed: {:?}", duration);
 
         assert!(
             handle_result.is_ok(),
