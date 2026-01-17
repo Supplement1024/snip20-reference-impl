@@ -3048,7 +3048,7 @@ mod tests {
 
         let handle_result = execute(deps.as_mut(), mock_env(), info, handle_msg);
         let duration = start.elapsed();
-        println!("[unit-test] test_handle_send elapsed: {:?}", duration);
+        println!("[unit-test] test_handle_send_from elapsed: {:?}", duration);
 
         assert!(
             handle_result.is_ok(),

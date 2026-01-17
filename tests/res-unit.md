@@ -14,7 +14,7 @@ test contract::tests::test_handle_decrease_allowance ... ok
 test contract::tests::test_handle_increase_allowance ... ok
 test contract::tests::test_handle_deposit ... ok
 test contract::tests::test_handle_register_receive ... ok
-[unit-test] test_handle_send elapsed: 391.243µs
+[unit-test] test_handle_send_from elapsed: 391.243µs
 [unit-test] test_init_sanity elapsed: 146.228µs
 test contract::tests::test_handle_pause_all ... ok
 [unit-test] test_handle_send elapsed: 182.623µs
